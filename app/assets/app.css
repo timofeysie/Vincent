@@ -132,3 +132,7 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
+
+// position the logo in the title bar
+.header img { position:relative; float:right; margin:-8px 10px 0 0; };
+.header h1 { font-weight:900 }
