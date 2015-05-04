@@ -22,7 +22,7 @@
         $http.get(url, {
             cache: true,
           }).success(function(data) {
-            console.log('success:data',data);
+            //console.log('success:data',data);
             deferred.resolve(data);
           }).error(function() {
             console.log('error');
@@ -37,7 +37,22 @@
         $http.get(url, {
             cache: true,
           }).success(function(data) {
-            console.log('success:data',data);
+            //console.log('success:data',data);
+            deferred.resolve(data);
+          }).error(function() {
+            console.log('error');
+            deferred.reject();
+          });
+          return deferred.promise;
+      },
+      loadPainter : function(firstname) {
+        var deferred = $q.defer();
+        var paintings = [];
+        var url = 'https://ebor-timofeysie.c9.io/post-impressionist/'+firstname;
+        $http.get(url, {
+            cache: true,
+          }).success(function(data) {
+            //console.log('success:data',data);
             deferred.resolve(data);
           }).error(function() {
             console.log('error');

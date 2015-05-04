@@ -1,0 +1,57 @@
+    <md-toolbar layout="row">
+      <md-button class="menu" 
+          hide-gt-sm 
+          ng-click="ul.toggleList()" 
+          aria-label="Show Painting List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <div class="header">
+        <img align="right" ng-src="assets/png/vincent-white.png"/>
+        <h1 align="left">Post Impressionists</h1>
+      </div>
+    </md-toolbar>
+    <div flex layout="row">
+        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" 
+          class="md-whiteframe-z2" 
+          md-component-id="left">
+          <md-list>
+            <md-item ng-repeat="it in ul.paintings">
+
+              <md-button 
+                ng-click="ul.selectPainting(it)" 
+                ng-class="{'selected' : it === ul.selected }">
+                <md-content 
+                  flex id="content">
+                    <img src="{{it.thumb}}" 
+                      alt="image caption">
+                      <h5 class="md-subhead">{{it.title}}</h5>
+                </md-content>
+              </md-button>
+
+            </md-item>
+          </md-list>
+        </md-sidenav>
+
+      <!-- Detail view -->
+      <div  ng-hide="ul.selected.image">
+            <p class="loading">
+            Please wait while the images are loaded...</p>
+      </div>
+      <div ng-show="ul.selected.image"
+           layout="column">  
+        <md-content flex id="content">
+          <md-card>
+              <img src="{{ul.selected.image}}" 
+                alt="image caption"
+                class="loading">
+                <md-card-content>{{ul.selected.title}}, {{ul.selected.date}}
+                </md-card-content>
+              <md-card-footer>{{ul.selected.size}}</md-card-footer>
+            </md-card>
+            <!--md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
+            <md-icon md-svg-icon="share"></md-icon-->
+          </md-button>
+        </md-content>
+      </div>
+
+    </div>

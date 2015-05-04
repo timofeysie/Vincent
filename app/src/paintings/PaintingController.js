@@ -5,7 +5,7 @@
           PaintingController
        ]);
   /**
-   * Main Controller for the Angular Material Starter App
+   * Main Controller for the Vincent App
    * @param $scope
    * @param $mdSidenav
    * @param avatarsService
@@ -14,10 +14,13 @@
   function PaintingController(paintingService, $mdSidenav, $mdBottomSheet, $log, $q) {
     var self = this;
     self.selected     = null;
+    self.painterView = false;
     self.paintings        = [ ];
     self.selectPainting   = selectPainting;
     self.toggleList   = togglePaintingsList;
     self.share        = share;
+    self.loadPainter   = loadPainter;
+    self.selectPainters   = selectPainters;
     // Load all registered paintings
     paintingService
           .loadPainters()
@@ -49,6 +52,36 @@
     function selectPainting ( painting ) {
       self.selected = angular.isNumber(painting) ? $scope.paintings[painting] : painting;
       self.toggleList();
+    }
+
+    /**
+    * Load an artist and all the thumbnails & data of their paintings.
+    */
+    function loadPainter($event) {
+      var artist = self.selected;
+      console.log('artists selected: '+artist.title);
+      var sections = artist.title.split(' ');
+      var firstname = sections[0].toLowerCase();
+      paintingService
+          .loadPainter(firstname)
+          .then( function(paintings) {
+            self.paintings = [].concat(paintings);
+            console.log('paintings '+paintings.length);
+            self.selected = paintings[0];
+            self.painterView = true;
+          });
+    }
+
+    function selectPainters($event) {
+      console.log('back to painters');
+      paintingService
+          .loadPainters()
+          .then( function(paintings) {
+            self.paintings = [].concat(paintings);
+            console.log('paintings '+paintings.length);
+            self.selected = paintings[0];
+            self.painterView = false;
+          });
     }
 
     /**

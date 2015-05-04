@@ -138,10 +138,18 @@ span.name {
 }
 
 /* position the logo in the title bar*/
-.header img { position:relative; float:right; margin:-8px 10px 0 0; };
-.header h1 { font-weight:900 }
+.header img { 
+  position: relative; 
+  float: right; 
+  padding-left: 5px;
+}
+.header h1 { 
+  font-weight: 900;
+  float: left;
+  padding-left: 5px;
+}
 
 /* detail image loading wheel */
 img.loading {
-    background: transparent url(path/to/loading.gif) no-repeat scroll center center;
+    background: transparent url(gif/loading.gif) no-repeat scroll center center;
 }

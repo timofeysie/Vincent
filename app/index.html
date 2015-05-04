@@ -14,7 +14,7 @@
     <link rel="stylesheet" 
           href="assets/app.css"/>
   </head>
-  <body ng-app="starterApp" 
+  <body ng-app="vincentApp" 
         layout="column" 
         ng-controller="PaintingController as ul">
     <md-toolbar layout="row">
@@ -25,6 +25,7 @@
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <div class="header">
+        <h1 ng-click="ul.selectPainters()">The Post-Imporessionists</h1>
         <img class="right" ng-src="assets/png/vincent-white.png"/>
       </div>
     </md-toolbar>
@@ -40,9 +41,11 @@
                 ng-class="{'selected' : it === ul.selected }">
                 <md-content 
                   flex id="content">
+                  <div ng-show="ul.painterView">
                     <img src="{{it.thumb}}" 
                       alt="image caption">
-                      <h5 class="md-subhead">{{it.title}}</h5>
+                  </div>
+                  <h5 class="md-subhead">{{it.title}}</h5>
                 </md-content>
               </md-button>
 
@@ -66,9 +69,11 @@
                 </md-card-content>
               <md-card-footer>{{ul.selected.size}}</md-card-footer>
             </md-card>
-            <!--md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon-->
-          </md-button>
+            <div ng-hide="ul.painterView">
+              <md-button class="share" md-no-ink ng-click="ul.loadPainter($event)" aria-label="Load">
+                <md-icon md-svg-icon="share"></md-icon>
+              </md-button>
+            </div>
         </md-content>
       </div>
 
@@ -78,33 +83,10 @@
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
-
+    <script src="./app.js"></script>
     <script src="./src/paintings/Paintings.js"></script>
     <script src="./src/paintings/PaintingController.js"></script>
     <script src="./src/paintings/PaintingService.js"></script>
-
-    <script type="text/javascript">
-
-          angular
-              .module('starterApp', ['ngMaterial', 'paintings'])
-              .config(function($mdThemingProvider, $mdIconProvider){
-
-                  $mdIconProvider
-                      .defaultIconSet("./assets/svg/avatars.svg", 128)
-                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-                      .icon("share"      , "./assets/svg/share.svg"       , 24)
-                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
-
-                      $mdThemingProvider.theme('default')
-                          .primaryPalette('green')
-                          .accentPalette('red');
-
-              });
-
-    </script>
 
   </body>
 </html>
