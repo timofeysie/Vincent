@@ -133,6 +133,11 @@ span.name {
   padding-left:5px;
 }
 
-// position the logo in the title bar
+/* position the logo in the title bar*/
 .header img { position:relative; float:right; margin:-8px 10px 0 0; };
 .header h1 { font-weight:900 }
+
+/* detail image loading wheel */
+img.loading {
+    background: transparent url(path/to/loading.gif) no-repeat scroll center center;
+}

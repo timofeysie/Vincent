@@ -8,7 +8,6 @@
    * Paintings DataService
    * Uses Theo as a data source.
    * remote data service call(s).
-   *
    * @returns {{loadAll: Function}}
    * @constructor
    */
@@ -19,12 +18,29 @@
       loadAllPaintings : function() {
         var deferred = $q.defer();
         var paintings = [];
+        var url = 'https://ebor-timofeysie.c9.io/vincent';
+        $http.get(url, {
+            cache: true,
+          }).success(function(data) {
+            console.log('success:data',data);
+            deferred.resolve(data);
+          }).error(function() {
+            console.log('error');
+            deferred.reject();
+          });
+          return deferred.promise;
+      },
+      loadPainters : function() {
+        var deferred = $q.defer();
+        var paintings = [];
         var url = 'https://ebor-timofeysie.c9.io/post-impressionists';
         $http.get(url, {
             cache: true,
           }).success(function(data) {
+            console.log('success:data',data);
             deferred.resolve(data);
           }).error(function() {
+            console.log('error');
             deferred.reject();
           });
           return deferred.promise;
