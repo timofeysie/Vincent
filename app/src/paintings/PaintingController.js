@@ -11,9 +11,8 @@
    * @param avatarsService
    * @constructor
    */
-  function PaintingController( paintingService, $mdSidenav, $mdBottomSheet, $log, $q) {
+  function PaintingController(paintingService, $mdSidenav, $mdBottomSheet, $log, $q) {
     var self = this;
-
     self.selected     = null;
     self.paintings        = [ ];
     self.selectPainting   = selectPainting;
@@ -21,12 +20,13 @@
     self.share        = share;
     // Load all registered paintings
     paintingService
-          .loadAllPaintings()
+          .loadPainters()
           .then( function(paintings) {
-            self.paintings    = [].concat(paintings);
+            self.paintings = [].concat(paintings);
             console.log('paintings '+paintings.length);
             self.selected = paintings[0];
           });
+          
     // *********************************
     // Internal methods
     // *********************************
@@ -37,7 +37,6 @@
      */
     function togglePaintingsList() {
       var pending = $mdBottomSheet.hide() || $q.when(true);
-
       pending.then(function(){
         $mdSidenav('left').toggle();
       });
