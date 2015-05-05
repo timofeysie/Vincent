@@ -21,7 +21,7 @@
     self.share        = share;
     self.loadPainter   = loadPainter;
     self.selectPainters   = selectPainters;
-    // Load all registered paintings
+    // Loading all painters
     paintingService
           .loadPainters()
           .then( function(paintings) {
@@ -58,6 +58,7 @@
     * Load an artist and all the thumbnails & data of their paintings.
     */
     function loadPainter($event) {
+      // TODO: Implement lazy loading for a painters painting thumbs
       var artist = self.selected;
       console.log('artists selected: '+artist.title);
       var sections = artist.title.split(' ');
