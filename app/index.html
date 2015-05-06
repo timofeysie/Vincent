@@ -41,11 +41,15 @@
                 ng-class="{'selected' : it === ul.selected }">
                 <md-content 
                   flex id="content">
+                  <!-- Hide the thumbnail for the list of painters -->
                   <div ng-show="ul.painterView">
                     <img src="{{it.thumb}}" 
                       alt="image caption">
                   </div>
-                  <h5 class="md-subhead">{{it.title}}</h5>
+                  <!-- Hide the title for the list of paintings -->
+                  <div ng-hide="ul.painterView">
+                    <h5 class="md-subhead">{{it.title}}</h5>
+                  </div>
                 </md-content>
               </md-button>
 

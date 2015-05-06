@@ -62,7 +62,7 @@
       var artist = self.selected;
       console.log('artists selected: '+artist.title);
       var sections = artist.title.split(' ');
-      var firstname = sections[0].toLowerCase();
+      var firstname = sections[sections.length-1].toLowerCase();
       paintingService
           .loadPainter(firstname)
           .then( function(paintings) {
