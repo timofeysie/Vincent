@@ -15,6 +15,21 @@
 
     // Promise-based API
     return {
+      loadGame : function() {
+        var deferred = $q.defer();
+        var paintings = [];
+        var url = 'https://ebor-timofeysie.c9.io/play';
+        $http.get(url, {
+            cache: true,
+          }).success(function(data) {
+            console.log('success:data',data);
+            deferred.resolve(data);
+          }).error(function() {
+            console.log('error');
+            deferred.reject();
+          });
+          return deferred.promise;
+      },
       loadAllPaintings : function() {
         var deferred = $q.defer();
         var paintings = [];

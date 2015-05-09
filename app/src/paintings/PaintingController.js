@@ -15,19 +15,34 @@
     var self = this;
     self.selected     = null;
     self.painterView = false;
-    self.paintings        = [ ];
+    self.game = true;
+    self.paintings = [ ];
+    self.painters = [ ];
+    self.choices  = [ ];
     self.selectPainting   = selectPainting;
     self.toggleList   = togglePaintingsList;
     self.share        = share;
     self.loadPainter   = loadPainter;
     self.selectPainters   = selectPainters;
+    self.selectAnswer = selectAnswer;
+    self.loadGame = loadGame;
+    self.answer = false;
+    self.guessed = false;
     // Loading all painters
     paintingService
-          .loadPainters()
+          .loadGame()
           .then( function(paintings) {
             self.paintings = [].concat(paintings);
             console.log('paintings '+paintings.length);
-            self.selected = paintings[0];
+            self.choices = paintings[0];
+            self.paintings = paintings[0]; // the list of artists
+            self.painter  = paintings[1]; // the correct artist
+            self.selected = paintings[2]; // to be shown
+            console.log(self.paintings);
+            self.painterView = false;
+            self.game = true;
+            self.answer = false;
+            self.guessed = false;
           });
           
     // *********************************
@@ -46,12 +61,47 @@
     }
 
     /**
-     * Select the current avatars
+     * Select the current painting
      * @param menuId
      */
-    function selectPainting ( painting ) {
+    function selectPainting (painting) {
       self.selected = angular.isNumber(painting) ? $scope.paintings[painting] : painting;
       self.toggleList();
+      self.game = false;
+    }
+
+    /**
+     * Select and answer
+     * @param menuId
+     */
+    function selectAnswer(painter) {
+      console.log('answer: '+painter);
+      if (painter.title === self.painter.title) {
+        console.log('correct!');
+        self.answer = true;
+      } else {
+        self.guessed = true;
+      }
+    }
+
+    /**
+    * Load an game with list of all painters, the painter chose, and 
+    * the painting chosen.
+    */
+    function loadGame($event) {
+      paintingService
+          .loadGame()
+          .then( function(paintings) {
+            self.choices = paintings[0];
+            self.paintings = paintings[0]; // the list of artists
+            self.painter  = paintings[1]; // the correct artist
+            self.selected = paintings[2]; // to be shown
+            console.log(self.paintings);
+            self.painterView = false;
+            self.game = true;
+            self.answer = false;
+            self.guessed = false;
+          });
     }
 
     /**
@@ -70,6 +120,7 @@
             console.log('paintings '+paintings.length);
             self.selected = paintings[0];
             self.painterView = true;
+            self.game = false;
           });
     }
 
@@ -82,6 +133,7 @@
             console.log('paintings '+paintings.length);
             self.selected = paintings[0];
             self.painterView = false;
+            self.game = false;
           });
     }
 

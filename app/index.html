@@ -25,17 +25,22 @@
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <div class="header">
-        <h1 ng-click="ul.selectPainters()">The Post-Imporessionists</h1>
-        <img class="right" ng-src="assets/png/vincent-white.png"/>
+        <h1 align="right">Browse Post-Imporessionists</h1>
+        <img class="right" 
+          ng-src="assets/png/vincent-white.png"/>
+        <h1 ng-click="ul.loadGame()">Play the Game</h1>
       </div>
     </md-toolbar>
+    <!-- list view -->
     <div flex layout="row">
         <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" 
           class="md-whiteframe-z2" 
           md-component-id="left">
           <md-list>
-            <md-item ng-repeat="it in ul.paintings">
 
+          <!-- browse all artists view -->
+          <div ng-hide="ul.game">
+            <md-item ng-repeat="it in ul.paintings">
               <md-button 
                 ng-click="ul.selectPainting(it)" 
                 ng-class="{'selected' : it === ul.selected }">
@@ -52,8 +57,26 @@
                   </div>
                 </md-content>
               </md-button>
-
             </md-item>
+          </div>
+
+          <!-- game list of possible artists -->
+          <div ng-show="ul.game">
+            <md-item ng-repeat="it in ul.choices">
+            <md-button 
+                ng-click="ul.selectAnswer(it)" 
+                ng-class="{'selected' : it === ul.selected }">
+                <md-content 
+                  flex id="content">
+                  <!-- Hide the title for the list of paintings -->
+                  <div ng-hide="ul.painterView">
+                    <h5 class="md-subhead">{{it.title}}</h5>
+                  </div>
+                </md-content>
+              </md-button>
+            </md-item>
+          </div>
+
           </md-list>
         </md-sidenav>
 
@@ -69,11 +92,27 @@
               <img src="{{ul.selected.image}}" 
                 alt="image caption"
                 class="loading">
-                <md-card-content>{{ul.selected.title}}, {{ul.selected.date}}
-                </md-card-content>
-              <md-card-footer>{{ul.selected.size}}</md-card-footer>
+                <!-- browse view -->
+                <div ng-hide="ul.game">
+                  <md-card-content>
+                    {{ul.selected.title}}, {{ul.selected.date}}
+                  </md-card-content>
+                  <md-card-footer>{{ul.selected.size}}</md-card-footer>
+                </div>
+                <!-- game view -->
+                <div ng-show="ul.game">
+                  <md-card-content>
+                    <div ng-hide="ul.answer">Guess the painter</div>
+                    <div ng-show="ul.guessed && !ul.answer">Wrong!  Try again</div>
+                    <div ng-show="ul.answer">Correct!
+                      <br>{{ul.selected.title}}, {{ul.selected.date}}, {{ul.selected.size}}
+                      <br>by {{ul.painter.title}}, {{ul.painter.size}}
+                    </div>
+                  </md-card-content>
+                </div>
+
             </md-card>
-            <div ng-hide="ul.painterView">
+            <div ng-hide="ul.painterView || ul.game">
               <md-button class="share" md-no-ink ng-click="ul.loadPainter($event)" aria-label="Load">
                 <md-icon md-svg-icon="share"></md-icon>
               </md-button>
