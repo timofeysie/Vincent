@@ -25,10 +25,12 @@
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <div class="header">
-        <h1 align="right">Browse Post-Imporessionists</h1>
+        <md-button 
+          ng-click="ul.selectPainters(it)">Browse</md-button>
         <img class="right" 
           ng-src="assets/png/vincent-white.png"/>
-        <h1 ng-click="ul.loadGame()">Play the Game</h1>
+        <md-button 
+          ng-click="ul.loadGame(it)">Play</md-button>
       </div>
     </md-toolbar>
     <!-- list view -->
@@ -62,7 +64,7 @@
 
           <!-- game list of possible artists -->
           <div ng-show="ul.game">
-            <md-item ng-repeat="it in ul.choices">
+            <md-item ng-repeat="it in ul.paintings">
             <md-button 
                 ng-click="ul.selectAnswer(it)" 
                 ng-class="{'selected' : it === ul.selected }">

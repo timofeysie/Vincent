@@ -34,7 +34,6 @@
           .then( function(paintings) {
             self.paintings = [].concat(paintings);
             console.log('paintings '+paintings.length);
-            self.choices = paintings[0];
             self.paintings = paintings[0]; // the list of artists
             self.painter  = paintings[1]; // the correct artist
             self.selected = paintings[2]; // to be shown
@@ -91,12 +90,11 @@
     function loadGame($event) {
       paintingService
           .loadGame()
-          .then( function(paintings) {
-            self.choices = paintings[0];
+          .then(function(paintings) {
             self.paintings = paintings[0]; // the list of artists
             self.painter  = paintings[1]; // the correct artist
             self.selected = paintings[2]; // to be shown
-            console.log(self.paintings);
+            console.log('loadGame called');
             self.painterView = false;
             self.game = true;
             self.answer = false;
@@ -117,7 +115,7 @@
           .loadPainter(firstname)
           .then( function(paintings) {
             self.paintings = [].concat(paintings);
-            console.log('paintings '+paintings.length);
+            console.log('paintings '+paintings.length+' '+firstname);
             self.selected = paintings[0];
             self.painterView = true;
             self.game = false;

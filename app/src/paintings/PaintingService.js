@@ -20,9 +20,9 @@
         var paintings = [];
         var url = 'https://ebor-timofeysie.c9.io/play';
         $http.get(url, {
-            cache: true,
+            cache: false,
           }).success(function(data) {
-            console.log('success:data',data);
+            console.log('loadGame:data', data);
             deferred.resolve(data);
           }).error(function() {
             console.log('error');

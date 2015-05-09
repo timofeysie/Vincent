@@ -9,6 +9,6 @@
 | bower_components/angular/angular.js | 25889 | Add a test for this case
 | bower_components/angular-material/angular-material.js | 1036 | Add support for multiple fingers on the `pointer` object (enables pinch gesture)
 | bower_components/angular-material/angular-material.js | 1048 | add windows phone to this
-| src/paintings/PaintingController.js | 76 | Implement lazy loading for a painters painting thumbs
+| src/paintings/PaintingController.js | 111 | Implement lazy loading for a painters painting thumbs
 | bower_components/angular-material/modules/closure/core/core.js | 989 | Add support for multiple fingers on the `pointer` object (enables pinch gesture)
 | bower_components/angular-material/modules/closure/core/core.js | 1001 | add windows phone to this
