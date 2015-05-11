@@ -17,23 +17,36 @@
   <body ng-app="vincentApp" 
         layout="column" 
         ng-controller="PaintingController as ul">
+    
+    <!-- Header -->
     <md-toolbar layout="row" layout-align="space-around center">
+      <span>
       <md-button class="menu" 
           hide-gt-sm 
           ng-click="ul.toggleList()" >
-        <md-icon md-svg-icon="menu" ></md-icon>
+        <md-icon md-svg-icon="menu"></md-icon>
       </md-button>
       <div class="header">
         <md-button 
           ng-class="{'selected' : it === ul.selected }"
           ng-click="ul.selectPainters(it)">Browse</md-button>
+        <md-button ng-class="{'selected' : it === ul.selected }"
+          ng-click="ul.loadGame(it)">{{ul.state}}</md-button>
+      </div>
+      </span>
+      <span>
+        <h4
+          ng-click="ul.resetScore()">
+          Score {{ul.score}} out of {{ul.sessionCount}}</h4>
+      </span>
+      <span></span>
         <img class="right" 
           aria-label="The Button"
           ng-src="assets/png/vincent-white.png"/>
-        <md-button ng-class="{'selected' : it === ul.selected }"
-          ng-click="ul.loadGame(it)">Play</md-button>
-      </div>
+      </span>
+      
     </md-toolbar>
+    
     <!-- list view -->
     <div flex layout="row">
         <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" 
@@ -85,16 +98,18 @@
 
       <!-- Detail view -->
       <div  ng-hide="ul.selected.image">
-            <p class="loading">
+            <p class="loading content">
             Please wait while the images are loaded...</p>
       </div>
       <div ng-show="ul.selected.image"
            layout="column">  
         <md-content flex id="content">
           <md-card layout-align="center">
-              <img src="{{ul.selected.image}}" 
+            
+              <img ng-src="{{ul.selected.image}}" 
                 alt="image caption"
-                class="loading">
+                class="loading"/>
+                
                 <!-- browse view -->
                 <div ng-hide="ul.game">
                   <md-card-content>
@@ -111,8 +126,8 @@
                       layout-padding>Wrong!  Try again</div>
                     <div ng-show="ul.answer"
                       layout-padding>Correct!
-                      <br>{{ul.selected.title}}, {{ul.selected.date}}, {{ul.selected.size}}
-                      <br>by {{ul.painter.title}}, {{ul.painter.size}}
+                      <p>{{ul.selected.title}}, {{ul.selected.date}}
+                      <p>by {{ul.painter.title}}
                     </div>
                   </md-card-content>
                 </div>
@@ -124,9 +139,12 @@
               </md-button>
             </div>
         </md-content>
-      </div>
 
-    </div>
+        
+        <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
+            Share
+        </md-button>
+
 
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>

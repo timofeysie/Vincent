@@ -1,6 +1,11 @@
 # Vincent 
 
-This is an app to explore painting.  Currently is supports browsing Post-Impressionist artists by name.  You can select an artist by choosing the arrow at the upper right side of the artist's profile, and then you can brows their paintings by thumbnail and see larger views on the right.
+This is a game about art.  The player is shown a painting, and a list of possible artists.
+They get scored by the number of correct choices.
+Currently it is mainly post-impressionists, with a few impressionists.
+The player can also brows the art collection by artists.
+We scrape Wikidata lists of artist to assemble the data.
+
 
 ## Quickstart
 
@@ -13,6 +18,17 @@ http-server -a localhost -p 8000
 The app is being hosted for development by Cloud9 and is live at [Vincent](https://vincent-timofeysie.c9.io/app/)
 
 See the Getting Started section below for detailed installation instructions.
+
+## Features to implement
+* hide the image onload, use a splash screen (preload) or a loading bar
+* stop user from loading a new image without guessing, or give one 'pass' option
+* title for browse artstis
+* facebook like
+* share on social media/email link to painting
+* rounds with increasing difficulty
+* difficulty level on paintings (keep track of correct/incorrect scores by painting and then calculate a difficulty rating based on this)
+* history of game paintings (is: scroll back to the previous 20 pictures, or show a thumbnail field)
+* if the view is collapsed, then choosing an artist should collapes the left view
 
 ## The Seed
 

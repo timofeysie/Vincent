@@ -26,8 +26,18 @@
     self.selectPainters   = selectPainters;
     self.selectAnswer = selectAnswer;
     self.loadGame = loadGame;
+    self.resetScore = resetScore;
     self.answer = false;
     self.guessed = false;
+    self.score = 0;
+    self.sessionCount = 0;
+    self.state = 'Start';
+    //keep track of the state of the loading images.
+    //$scope.isLoading = true;
+    //$scope.isSuccessful = false;
+    //$scope.percentLoaded = 0;
+
+      
     // Loading all painters
     paintingService
           .loadGame()
@@ -77,10 +87,13 @@
       console.log('answer: '+painter);
       if (painter.title === self.painter.title) {
         console.log('correct!');
+        self.score++;
         self.answer = true;
       } else {
         self.guessed = true;
       }
+      self.sessionCount++;
+      self.state = 'Next';
     }
 
     /**
@@ -100,6 +113,12 @@
             self.answer = false;
             self.guessed = false;
           });
+    }
+    
+    function resetScore() {
+      self.sessionCount = 0;
+      self.score = 0;
+      self.state = 'Start';
     }
 
     /**
@@ -140,17 +159,17 @@
      */
     function share($event) {
         var painting = self.selected;
-
+        console.log('share');
         $mdBottomSheet.show({
-          parent: angular.element(document.getElementById('content')),
-          templateUrl: '/src/paintings/view/contactSheet.html',
-          controller: [ '$mdBottomSheet', PaintingSheetController],
-          controllerAs: "vm",
-          bindToController : true,
-          targetEvent: $event
-        }).then(function(clickedItem) {
-          clickedItem && $log.debug( clickedItem.name + ' clicked!');
-        });
+        parent: angular.element(document.getElementById('content')),
+        templateUrl: './src/paintings/view/contactSheet.html',
+        controller: [ '$mdBottomSheet', PaintingSheetController],
+        controllerAs: "vm",
+        bindToController : true,
+        targetEvent: $event
+      }).then(function(clickedItem) {
+        clickedItem && $log.debug( clickedItem.name + ' clicked!');
+    });
 
         /**
          * Bottom Sheet controller for the Avatar Actions

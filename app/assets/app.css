@@ -7,7 +7,6 @@ html, body {
 }
 
 /* Toolbar area */
-
 .menu {
   background-color: transparent;
   border: none;
@@ -21,7 +20,6 @@ md-toolbar h1 {
 }
 
 /* Sidenav area */
-
 md-list .md-button {
   color: inherit;
   font-weight: 500;
@@ -36,9 +34,16 @@ md-list .md-button {
     padding: 0px 0px 8px 0px;
   }
 
+/* override defautls */
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 200vw !important;
+    max-width: 200px !important;
+} 
 
 /* Primary content area */
-
 .loading {
   text-align: right;
 }
@@ -48,8 +53,8 @@ md-list .md-button {
 }
 
 #content  {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 5px;
 }
 
@@ -94,20 +99,23 @@ md-button.menuBtn > md-icon {
   transition: all 100ms ease-out 30ms;
 }
 
+/* Override padding on right side of list*/
+button.md-button.md-defulat-theme {
+  width: 100%;
+}
+
+/* Main image */
 #content img {
   display: block;
   height: auto;
-  max-width: 500px;
+  max-width: 350px;
 }
-
 /* Utils */
-
 .content-wrapper {
   position: relative;
 }
 
 /* Typography support coming in 0.8.0 */
-
 md-toolbar h1 {
   font-size: 1.250em;
   font-weight: 400;
