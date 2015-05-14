@@ -84,7 +84,7 @@
                   <!-- Hide the title for the list of paintings -->
                   <div ng-hide="ul.painterView">
                     <h5 class="md-subhead"
-                      ng-class="{'text-danger': it.wrong}">{{it.title}}</h5>
+                      ng-class="{'text-wrong': it.wrong, 'text-correct': it.right}">{{it.title}}</h5>
                   </div>
                 </md-content>
               </md-button>
@@ -124,7 +124,8 @@
                     <div ng-show="ul.guessed && !ul.answer"
                       layout-padding>Wrong!  Try again</div>
                     <div ng-show="ul.answer"
-                      layout-padding>Correct!
+                      layout-padding>
+                      <h4 class="text-correct">Correct!</h4>
                       <p>{{ul.selected.title}}, {{ul.selected.date}}
                       <p>by {{ul.painter.title}}
                     </div>

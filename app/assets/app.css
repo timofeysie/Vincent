@@ -183,6 +183,10 @@ img.loading {
   visibility: hidden;
 }
 
-.text-danger {
+/* Right and wrong answer styles */
+.text-wrong {
     color:red
-  }
+}
+.text-correct {
+    color:green
+}

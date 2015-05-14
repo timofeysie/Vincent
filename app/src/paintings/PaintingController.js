@@ -74,21 +74,27 @@
     }
 
     /**
-     * Select an answer
+     * Select an answer.  If the artist painter.title matches the painting title in
+     the argument, then it is a correct answer.  But only increment the score and count
+     if the answer has not already been chosen.
+     If the answer is incorrect, the player should only be able to choose it once.
      * @param menuId
      */
     function selectAnswer(painter) {
       console.log('answer: '+painter);
-      if (painter.title === self.painter.title) {
+      if (painter.title === self.painter.title && self.answer != true) {
         console.log('correct!');
         self.score++;
         self.answer = true;
-      } else {
+        painter.right = true; // change the style of the name
+        self.sessionCount++;
+        self.state = 'Next';
+      } else if (painter.wrong != true && self.state != 'Next') {
         self.guessed = true;
-        painter.wrong = true;
+        painter.wrong = true; // change the style of the name
+        self.sessionCount++;
+        self.state = 'Guess';
       }
-      self.sessionCount++;
-      self.state = 'Next';
     }
 
     /**
