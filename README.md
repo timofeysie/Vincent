@@ -6,7 +6,6 @@ Currently it is mainly post-impressionists, with a few impressionists.
 The player can also brows the art collection by artists.
 We scrape Wikidata lists of artist to assemble the data.
 
-
 ## Quickstart
 
 start the web server:

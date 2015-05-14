@@ -31,23 +31,17 @@
     self.guessed = false;
     self.score = 0;
     self.sessionCount = 0;
-    self.state = 'Start';
-    //keep track of the state of the loading images.
-    //$scope.isLoading = true;
-    //$scope.isSuccessful = false;
-    //$scope.percentLoaded = 0;
-
+    self.state = 'Play';
       
     // Loading all painters
     paintingService
           .loadGame()
           .then( function(paintings) {
             self.paintings = [].concat(paintings);
-            console.log('paintings '+paintings.length);
             self.paintings = paintings[0]; // the list of artists
             self.painter  = paintings[1]; // the correct artist
             self.selected = paintings[2]; // to be shown
-            console.log(self.paintings);
+            //console.log(self.paintings);
             self.painterView = false;
             self.game = true;
             self.answer = false;
@@ -104,6 +98,7 @@
       paintingService
           .loadGame()
           .then(function(paintings) {
+            paintingService.setLoading(true);
             self.paintings = paintings[0]; // the list of artists
             self.painter  = paintings[1]; // the correct artist
             self.selected = paintings[2]; // to be shown

@@ -6,7 +6,7 @@
 
   /**
    * Paintings DataService
-   * Uses Theo as a data source.
+   * Uses Theo/Ebor as a data source.
    * remote data service call(s).
    * @returns {{loadAll: Function}}
    * @constructor
@@ -15,6 +15,12 @@
 
     // Promise-based API
     return {
+      setLoading : function () {
+        //console.log('start loading'); // set the loading image opcity
+        var imageElement = angular.element(document.getElementById('main-image'));
+        imageElement.css("opacity", "0.0");
+        imageElement.css("filter", "alpha(opacity=00)");
+      },
       loadGame : function() {
         var deferred = $q.defer();
         var paintings = [];

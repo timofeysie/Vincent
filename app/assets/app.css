@@ -109,6 +109,8 @@ button.md-button.md-defulat-theme {
   display: block;
   height: auto;
   max-width: 350px;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
 }
 /* Utils */
 .content-wrapper {
@@ -166,5 +168,13 @@ span.name {
 
 /* detail image loading wheel */
 img.loading {
-    background: transparent url(gif/loading.gif) no-repeat scroll center center;
+    background: transparent url(gif/loading-x.gif) no-repeat scroll center center;
+}
+
+/* Preloading image spinner */
+.spinner-hide .loading{
+  visibility: visible;
+}
+.spinner-show .loading{
+  visibility: hidden;
 }
