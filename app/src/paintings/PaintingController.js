@@ -74,7 +74,7 @@
     }
 
     /**
-     * Select and answer
+     * Select an answer
      * @param menuId
      */
     function selectAnswer(painter) {
@@ -85,6 +85,7 @@
         self.answer = true;
       } else {
         self.guessed = true;
+        painter.wrong = true;
       }
       self.sessionCount++;
       self.state = 'Next';

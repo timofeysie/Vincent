@@ -27,6 +27,10 @@ md-list .md-button {
   width: 70%;
 }
   md-list .md-button.selected {
+    color: #ff0x;
+  }
+
+  md-list .md-button.wrongGuess {
     color: #03a9f4;
   }
 
@@ -178,3 +182,7 @@ img.loading {
 .spinner-show .loading{
   visibility: hidden;
 }
+
+.text-danger {
+    color:red
+  }

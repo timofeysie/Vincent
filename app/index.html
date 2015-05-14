@@ -83,7 +83,8 @@
                   flex id="content">
                   <!-- Hide the title for the list of paintings -->
                   <div ng-hide="ul.painterView">
-                    <h5 class="md-subhead">{{it.title}}</h5>
+                    <h5 class="md-subhead"
+                      ng-class="{'text-danger': it.wrong}">{{it.title}}</h5>
                   </div>
                 </md-content>
               </md-button>
