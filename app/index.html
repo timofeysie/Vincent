@@ -29,9 +29,9 @@
         <md-icon md-svg-icon="menu"></md-icon>
       </md-button>
       <div class="header">
-        <md-button 
+        <!-- md-button 
           ng-class="{'selected' : it === ul.selected }"
-          ng-click="ul.selectPainters(it)">Browse</md-button>
+          ng-click="ul.selectPainters()">Browse</md-button -->
         <md-button ng-class="{'selected' : it === ul.selected }"
           ng-click="ul.loadGame(it)">{{ul.state}}</md-button>
       </div>
@@ -66,8 +66,7 @@
                   flex id="content">
                   <!-- Hide the thumbnail for the list of painters -->
                   <div ng-show="ul.painterView">
-                    <img src="{{it.thumb}}">
-                    <h5 class="md-subhead">{{it.title}}</h5>
+                    <h5>{{it.title}}</h5>
                   </div>
                 </md-content>
               </md-button>

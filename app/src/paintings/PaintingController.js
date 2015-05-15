@@ -16,9 +16,9 @@
     self.selected     = null;
     self.painterView = false;
     self.game = true;
-    self.paintings = [ ];
-    self.painters = [ ];
-    self.choices  = [ ];
+    self.paintings = [ ]; // the list of artists
+    self.painters = [ ];  // the correct artist
+    self.choices  = [ ];  // to be shown
     self.selectPainting   = selectPainting;
     self.toggleList   = togglePaintingsList;
     self.share        = share;
@@ -27,11 +27,11 @@
     self.selectAnswer = selectAnswer;
     self.loadGame = loadGame;
     self.resetScore = resetScore;
-    self.answer = false;
-    self.guessed = false;
+    self.answer = false;  // true when the answer is correct
+    self.guessed = false; // true when any choice has been made
     self.score = 0;
     self.sessionCount = 0;
-    self.state = 'Play';
+    self.state = 'Play';  // the label on the game button
       
     // Loading all painters
     paintingService
@@ -144,15 +144,15 @@
           });
     }
 
-    function selectPainters($event) {
+    function selectPainters() {
       console.log('back to painters');
       paintingService
           .loadPainters()
-          .then( function(paintings) {
+          .then(function(paintings) {
             self.paintings = [].concat(paintings);
-            console.log('paintings '+paintings.length);
+            console.log('painters '+paintings.length);
             self.selected = paintings[0];
-            self.painterView = false;
+            self.painterView = true;
             self.game = false;
           });
     }
