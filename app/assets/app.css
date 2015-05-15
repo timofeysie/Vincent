@@ -190,3 +190,5 @@ img.loading {
 .text-correct {
     color:green
 }
+
+[ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}

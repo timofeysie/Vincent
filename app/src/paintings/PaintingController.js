@@ -114,6 +114,7 @@
             self.game = true;
             self.answer = false;
             self.guessed = false;
+            self.state = 'Guess';
           });
     }
     

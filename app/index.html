@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-    <title>List of Paintings by Vincent Van Gogh</title>
+    <title>Vincent</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" 
           content="IE=edge">
@@ -16,7 +16,8 @@
   </head>
   <body ng-app="vincentApp" 
         layout="column" 
-        ng-controller="PaintingController as ul">
+        ng-controller="PaintingController as ul"
+        ng-cloak>
     
     <!-- Header -->
     <md-toolbar layout="row" layout-align="space-around center">
@@ -38,7 +39,7 @@
       <span>
         <h4
           ng-click="ul.resetScore()">
-          Score {{ul.score}} out of {{ul.sessionCount}}</h4>
+          Score {{ul.score}}/{{ul.sessionCount}}</h4>
       </span>
       <span></span>
         <img class="right" 
@@ -119,13 +120,15 @@
                 <!-- game view -->
                 <div ng-show="ul.game">
                   <md-card-content>
-                    <div ng-hide="ul.answer" 
+                    <div ng-hide="ul.answer  || ul.guessed" 
                       layout-padding>Guess the painter</div>
-                    <div ng-show="ul.guessed && !ul.answer"
-                      layout-padding>Wrong!  Try again</div>
+                    <div ng-if="ul.guessed && !ul.answer"
+                      layout-padding
+                      class="text-wrong">
+                      Wrong!  Try again</div>
                     <div ng-show="ul.answer"
                       layout-padding>
-                      <h4 class="text-correct">Correct!</h4>
+                      <p class="text-correct">Correct!</p>
                       <p>{{ul.selected.title}}, {{ul.selected.date}}
                       <p>by {{ul.painter.title}}
                     </div>
