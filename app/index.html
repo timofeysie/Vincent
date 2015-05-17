@@ -14,148 +14,22 @@
     <link rel="stylesheet" 
           href="assets/app.css"/>
   </head>
-  <body ng-app="vincentApp" 
-        layout="column" 
-        ng-controller="PaintingController as ul"
-        ng-cloak>
+  <body ng-app="vincentApp">
     
-    <!-- Header -->
-    <md-toolbar layout="row" layout-align="space-around center">
-      <span>
-      <md-button class="menu" 
-          hide-gt-sm 
-          aria-label="Menu"
-          ng-click="ul.toggleList()" >
-        <md-icon md-svg-icon="menu"></md-icon>
-      </md-button>
-      <div class="header">
-        <!-- md-button 
-          ng-class="{'selected' : it === ul.selected }"
-          ng-click="ul.selectPainters()">Browse</md-button -->
-        <md-button ng-class="{'selected' : it === ul.selected }"
-          ng-click="ul.loadGame(it)">{{ul.state}}</md-button>
-      </div>
-      </span>
-      <span>
-        <h4
-          ng-click="ul.resetScore()">
-          Score {{ul.score}}/{{ul.sessionCount}}</h4>
-      </span>
-      <span></span>
-        <img class="right" 
-          aria-label="The Button"
-          ng-src="assets/png/vincent-white.png"/>
-      </span>
-      
-    </md-toolbar>
-    
-    <!-- list view -->
-    <div flex layout="row">
-        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" 
-          class="md-whiteframe-z2" 
-          md-component-id="left">
-          <md-list>
-
-          <!-- browse all artists view -->
-          <div ng-hide="ul.game">
-            <md-item ng-repeat="it in ul.paintings">
-              <md-button 
-                ng-click="ul.selectPainting(it)" 
-                ng-class="{'selected' : it === ul.selected }">
-                <md-content 
-                  flex id="content">
-                  <!-- Hide the thumbnail for the list of painters -->
-                  <div ng-show="ul.painterView">
-                    <h5>{{it.title}}</h5>
-                  </div>
-                </md-content>
-              </md-button>
-            </md-item>
-          </div>
-
-          <!-- game list of possible artists -->
-          <div ng-show="ul.game">
-            <md-item ng-repeat="it in ul.paintings">
-            <md-button 
-                ng-click="ul.selectAnswer(it)" 
-                ng-class="{'selected' : it === ul.selected }">
-                <md-content 
-                  flex id="content">
-                  <!-- Hide the title for the list of paintings -->
-                  <div ng-hide="ul.painterView">
-                    <h5 class="md-subhead"
-                      ng-class="{'text-wrong': it.wrong, 'text-correct': it.right}">{{it.title}}</h5>
-                  </div>
-                </md-content>
-              </md-button>
-            </md-item>
-          </div>
-
-          </md-list>
-        </md-sidenav>
-
-      <!-- Detail view -->
-      <div  ng-hide="ul.selected.image">
-            <p class="loading content">
-            Please wait while the images are loaded...</p>
-      </div>
-      <div ng-show="ul.selected.image"
-           layout="column">  
-        <md-content flex id="content">
-          <md-card layout-align="center">
-
-              <img ng-src="{{ul.selected.image}}" 
-                id="main-image"
-                class="loading"
-                painting-load-directive/>
-
-                <!-- browse view -->
-                <div ng-hide="ul.game">
-                  <md-card-content>
-                    {{ul.selected.title}}, {{ul.selected.date}}
-                  </md-card-content>
-                  <md-card-footer>{{ul.selected.size}}</md-card-footer>
-                </div>
-                <!-- game view -->
-                <div ng-show="ul.game">
-                  <md-card-content>
-                    <div ng-hide="ul.answer  || ul.guessed" 
-                      layout-padding>Guess the painter</div>
-                    <div ng-if="ul.guessed && !ul.answer"
-                      layout-padding
-                      class="text-wrong">
-                      Wrong!  Try again</div>
-                    <div ng-show="ul.answer"
-                      layout-padding>
-                      <p class="text-correct">Correct!</p>
-                      <p>{{ul.selected.title}}, {{ul.selected.date}}
-                      <p>by {{ul.painter.title}}
-                    </div>
-                  </md-card-content>
-                </div>
-
-            </md-card>
-            <div ng-hide="ul.painterView || ul.game">
-              <md-button class="share" md-no-ink ng-click="ul.loadPainter($event)" aria-label="Load">
-                <md-icon md-svg-icon="share"></md-icon>
-              </md-button>
-            </div>
-        </md-content>
-
-        
-        <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            Share
-        </md-button>
+    <div ng-view></div>
 
 
     <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
     <!--script src="bower_components/angular-preload-image/angular-preload-image.min.js"></script-->
     <script src="./app.js"></script>
     <script src="./src/paintings/Paintings.js"></script>
-    <script src="./src/paintings/PaintingController.js"></script>
+    <script src="./src/paintings/PaintingsController.js"></script>
+    <script src="./src/paintings/PaintersController.js"></script>
+    <script src="./src/paintings/GuessingController.js"></script>
     <script src="./src/paintings/PaintingService.js"></script>
     <script src="./src/paintings/paintingLoadDirective.js"></script>
 

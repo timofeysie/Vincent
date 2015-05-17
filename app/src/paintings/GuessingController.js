@@ -1,8 +1,8 @@
 (function(){
   angular.module('paintings')
-       .controller('PaintingController', [
+       .controller('GuessingController', [
           'paintingService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
-          PaintingController
+          GuessingController
        ]);
   /**
    * Main Controller for the Vincent App
@@ -11,7 +11,7 @@
    * @param avatarsService
    * @constructor
    */
-  function PaintingController(paintingService, $mdSidenav, $mdBottomSheet, $log, $q) {
+  function GuessingController(paintingService, $mdSidenav, $mdBottomSheet, $log, $q) {
     var self = this;
     self.selected     = null;
     self.painterView = false;
@@ -23,7 +23,6 @@
     self.toggleList   = togglePaintingsList;
     self.share        = share;
     self.loadPainter   = loadPainter;
-    self.selectPainters   = selectPainters;
     self.selectAnswer = selectAnswer;
     self.loadGame = loadGame;
     self.resetScore = resetScore;
@@ -138,19 +137,6 @@
           .then( function(paintings) {
             self.paintings = [].concat(paintings);
             console.log('paintings '+paintings.length+' '+firstname);
-            self.selected = paintings[0];
-            self.painterView = true;
-            self.game = false;
-          });
-    }
-
-    function selectPainters() {
-      console.log('back to painters');
-      paintingService
-          .loadPainters()
-          .then(function(paintings) {
-            self.paintings = [].concat(paintings);
-            console.log('painters '+paintings.length);
             self.selected = paintings[0];
             self.painterView = true;
             self.game = false;

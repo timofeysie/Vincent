@@ -1,5 +1,5 @@
 <div layout="column" 
-        ng-controller="PaintingsController as ul"
+        ng-controller="PaintersController as ul"
         ng-cloak>
   <!-- Header -->
   <md-toolbar layout="row" layout-align="space-around center">
@@ -11,9 +11,6 @@
         <md-icon md-svg-icon="menu"></md-icon>
       </md-button>
       <div class="header">
-      <md-button 
-        ng-class="{'selected' : it === ul.selected }"
-        href="#/painters">Browse Painters</md-button>
         <md-button ng-class="{'selected' : it === ul.selected }"
           href="#/game">Play</md-button>
       </div>
@@ -32,15 +29,14 @@
         md-component-id="left">
         <md-list>
 
-          <!-- browse all artists view -->
+          <!-- browse all artists view and link to individual painters-->
           <md-item ng-repeat="it in ul.paintings">
             <md-button 
-              ng-click="ul.selectPainting(it)" 
-              ng-class="{'selected' : it === ul.selected }">
+              ng-click="ul.selectPainter(it)" 
+              ng-class="{'selected' : it === ul.selected}">
               <md-content 
                 flex id="content">
-                <img ng-src="{{it.thumb}}" 
-                  aria-label="thumbnail" />
+                <h5>{{it.title}}</h5>
               </md-content>
             </md-button>
           </md-item>
@@ -60,7 +56,6 @@
 
             <img ng-src="{{ul.selected.image}}" 
               id="main-image"
-              aria-label="image" 
               class="loading"
               painting-load-directive/>
 
@@ -70,7 +65,13 @@
             </md-card-content>
           <md-card-footer>{{ul.selected.size}}</md-card-footer>
 
+          <!-- select a painter-->
           </md-card>
+            <md-button class="share" md-no-ink 
+              ng-href="#/browse/{{ul.selected.title}}" 
+              aria-label="Load">
+              <md-icon md-svg-icon="share"></md-icon>
+            </md-button>
       </md-content>
 
       <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">

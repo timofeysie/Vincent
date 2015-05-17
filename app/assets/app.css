@@ -1,7 +1,7 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
-  height:100%;
+/*  height:100%; */
   margin: 0px;
   padding: 0px;
 }
@@ -109,7 +109,7 @@ button.md-button.md-defulat-theme {
 }
 
 /* Main image */
-#content img {
+md-card img {
   display: block;
   height: auto;
   max-width: 350px;

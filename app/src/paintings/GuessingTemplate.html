@@ -1,0 +1,104 @@
+<div layout="column" 
+        ng-controller="GuessingController as ul"
+        ng-cloak>
+  <!-- Header -->
+  <md-toolbar layout="row" layout-align="space-around center">
+    <span>
+    <md-button class="menu" 
+        hide-gt-sm 
+        aria-label="Menu"
+        ng-click="ul.toggleList()" >
+      <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <div class="header">
+      <md-button 
+        ng-class="{'selected' : it === ul.selected }"
+        href="#/painters">Browse</md-button>
+      <md-button ng-class="{'selected' : it === ul.selected }"
+        ng-click="ul.loadGame(it)">{{ul.state}}</md-button>
+    </div>
+    </span>
+    <span>
+      <h4
+        ng-click="ul.resetScore()">
+        Score {{ul.score}}/{{ul.sessionCount}}</h4>
+    </span>
+    <span>
+      <img class="right" 
+        aria-label="The Button"
+        ng-src="assets/png/vincent-white.png"/>
+    </span>
+  </md-toolbar>
+  
+  <!-- list view -->
+  <div flex layout="row">
+      <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" 
+        class="md-whiteframe-z2" 
+        md-component-id="left">
+        <md-list>
+
+        <!-- game list of possible artists -->
+        <div ng-show="ul.game">
+          <md-item ng-repeat="it in ul.paintings">
+          <md-button 
+              ng-click="ul.selectAnswer(it)" 
+              ng-class="{'selected' : it === ul.selected }">
+              <md-content 
+                flex id="content">
+                <!-- Hide the title for the list of paintings -->
+                <div ng-hide="ul.painterView">
+                  <h5 class="md-subhead"
+                    ng-class="{'text-wrong': it.wrong, 'text-correct': it.right}">{{it.title}}</h5>
+                </div>
+              </md-content>
+            </md-button>
+          </md-item>
+        </div>
+
+        </md-list>
+      </md-sidenav>
+
+    <!-- Detail view -->
+    <div  ng-hide="ul.selected.image">
+          <p class="loading content">
+          Please wait while the images are loaded...</p>
+    </div>
+    <div ng-show="ul.selected.image"
+         layout="column">  
+      <md-content flex id="content">
+        <md-card layout-align="center">
+
+          <img ng-src="{{ul.selected.image}}" 
+            id="main-image"
+            class="loading"
+            painting-load-directive/>
+
+            <!-- game view -->
+            <md-card-content>
+              <div ng-hide="ul.answer  || ul.guessed" 
+                layout-padding>Guess the painter</div>
+              <div ng-if="ul.guessed && !ul.answer"
+                layout-padding
+                class="text-wrong">
+                Wrong!  Try again</div>
+              <div ng-show="ul.answer"
+                layout-padding>
+                <p class="text-correct">Correct!</p>
+                <p>{{ul.selected.title}}, {{ul.selected.date}}</p>
+                <p>by {{ul.painter.title}}</p>
+              </div>
+            </md-card-content>
+
+          </md-card>
+          <div ng-hide="ul.painterView || ul.game">
+            <md-button class="share" md-no-ink ng-click="ul.loadPainter($event)" aria-label="Load">
+              <md-icon md-svg-icon="share"></md-icon>
+            </md-button>
+          </div>
+      </md-content>
+
+      
+      <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
+          Share
+      </md-button>
+</div>
