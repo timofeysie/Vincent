@@ -1,10 +1,9 @@
 # Vincent 
 
-This is a game about art.  The player is shown a painting, and a list of possible artists.
-They get scored by the number of correct choices.
-Currently it is mainly post-impressionists, with a few impressionists.
-The player can also brows the art collection by artists.
-We scrape Wikidata lists of artist to assemble the data.
+This is a guessing game about art.  The player is shown a painting, and a list of possible artists.  There are five artists to choose is the current list which will be expanded soon.
+The player is scored by the number of correct choices versus the number of guesses they make.  Currently it is mainly post-impressionists, with a few impressionists.
+The player can also browse the list of paintings by artists.
+We scrape Wikidata for a list of works by a particular artist to assemble the data.  This is done in the Theo node.js project.
 
 ## Quickstart
 
@@ -19,9 +18,7 @@ The app is being hosted for development by Cloud9 and is live at [Vincent](https
 See the Getting Started section below for detailed installation instructions.
 
 ## Features to implement
-* hide the image onload, use a splash screen (preload) or a loading bar
-* stop user from loading a new image without guessing, or give one 'pass' option
-* title for browse artstis
+* title for browse artists
 * facebook like
 * share on social media/email link to painting
 * rounds with increasing difficulty
@@ -31,7 +28,7 @@ See the Getting Started section below for detailed installation instructions.
 
 ## The Seed
 
-The AngularJS Materal applications was used as a skeleton application.
+The AngularJS Material applications was used as a skeleton application.
 [AngularJS Material](http://angularjs.org/) 
 It is comprised of a Side navigation area and a content area.  The responsive layout changes to hide the user list, reveal the **menu** button.
 
