@@ -26,10 +26,21 @@ See the Getting Started section below for detailed installation instructions.
 * history of game paintings (is: scroll back to the previous 20 pictures, or show a thumbnail field)
 * if the view is collapsed, then choosing an artist should collapes the left view
 
+## Tests
+
+We have e2e and unit tests written in Jasmine and run with Protractor using the Webdriver to start the Selenium server.  This will start up a server:
+```
+$ webdriver-manager start
+```
+To run the tests, use the following command:
+```
+$ protractor protractor.conf.js
+```
+
 ## The Seed
 
-The AngularJS Material applications was used as a skeleton application.
-[AngularJS Material](http://angularjs.org/) 
+The AngularJS Material starter applications was used as a skeleton application.
+[AngularJS Material](https://github.com/angular/material-start) 
 It is comprised of a Side navigation area and a content area.  The responsive layout changes to hide the user list, reveal the **menu** button.
 
 The app demonstrates how:

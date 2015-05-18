@@ -1,20 +1,29 @@
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 11000000,
 
   specs: [
-    '*.js'
+    'scenarios.js'
   ],
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    "chromeOptions": {
+        args: [],
+        extensions: [],
+    }
   },
 
   baseUrl: 'http://localhost:8000/app/',
-
   framework: 'jasmine',
 
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
+  onPrepare: function() {
+    browser.driver.get(browser.baseUrl);
+    // implicit and page load timeouts
+    //browser.manage().timeouts().pageLoadTimeout(400000);
+    //browser.manage().timeouts().implicitlyWait(250000);
+    // for non-angular page
+    //browser.ignoreSynchronization = true;
+    // sign in before all tests
   }
 };
 
