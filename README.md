@@ -12,10 +12,17 @@ start the web server:
 cd app
 http-server -a localhost -p 8000
 ```
+With the server running from the root directory, run:
+$ webdriver-manager start
 
+Then, in a separate terminal, run:
+$ protractor e2e-tests/protractor.conf.js
+
+
+## Development
 The app is being hosted for development by Cloud9 and is live at [Vincent](https://vincent-timofeysie.c9.io/app/)
 
-See the Getting Started section below for detailed installation instructions.
+See the Getting Started section below for detailed installation instructions about setting up and running this project.
 
 ## Features to implement
 * title for browse artists
@@ -36,6 +43,51 @@ To run the tests, use the following command:
 ```
 $ protractor protractor.conf.js
 ```
+
+### Run End-to-End Tests
+
+To run your e2e tests your should install and configure Protractor and the Selenium WebServer.
+These are already specified as npm dependencies within `package.json`. Simply run these
+terminal commands:
+
+```console
+npm update
+webdriver-manager update
+```
+
+Your can read more details about Protractor and e2e here: http://angular.github.io/protractor/#/
+for more details on Protractor.
+
+ 1. Start your local HTTP Webserver: `live-server` or `http-server`.
+
+```console
+cd ./app; live-server;
+```
+
+sudo chown -R $USER /usr/local/lib/node_modules/webdriver-manager/selenium
+
+> Note: since `live-server` is working on port 8080, we configure the `protractor.conf.js` to use
+`baseUrl: 'http://localhost:8080'`
+
+ 2. In another tab, start a Webdriver instance:
+ 
+```console
+webdriver-manager start
+```
+
+>This will start up a Selenium Server and will output a bunch of info logs. Your Protractor test
+will send requests to this server to control a local browser. You can see information about the
+status of the server at `http://localhost:4444/wd/hub`. If you see errors, verify path in
+`e2e-tests/protractor.conf.js` for `chromeDriver` and `seleniumServerJar` to your local file system.
+
+ 3. Run your e2e tests using the `test` script defined in `package.json`:
+ 
+```console
+npm test
+```
+
+> This uses the local **Protractor** installed at `./node_modules/protractor`
+
 
 ## The Seed
 
