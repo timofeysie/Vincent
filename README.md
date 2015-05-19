@@ -1,23 +1,26 @@
 # Vincent 
 
-This is a guessing game about art.  The player is shown a painting, and a list of possible artists.  There are five artists to choose is the current list which will be expanded soon.
-The player is scored by the number of correct choices versus the number of guesses they make.  Currently it is mainly post-impressionists, with a few impressionists.
+This is a guessing game about art.  The player is shown a painting, and a list of possible artists.  There are five artists to choose from the current list which will be expanded soon.Currently it is mainly post-impressionists, with a few impressionists.
+The player is scored by the number of correct choices versus the number of guesses they make.  
 The player can also browse the list of paintings by artists.
-We scrape Wikidata for a list of works by a particular artist to assemble the data.  This is done in the Theo node.js project.
+We scrape Wikidata for a list of works by a particular artist to assemble the data on the server.  This is done in the Theo node.js project.
 
 ## Quickstart
 
 start the web server:
 ```
-cd app
-http-server -a localhost -p 8000
+$ http-server -a localhost -p 8000
 ```
-With the server running from the root directory, run:
+Foe e2e tests, With the server running from the root directory, run:
+```
+$ cd app
 $ webdriver-manager start
-
+```
 Then, in a separate terminal, run:
+```
 $ protractor e2e-tests/protractor.conf.js
-
+```
+Green means the code is clean!
 
 ## Development
 The app is being hosted for development by Cloud9 and is live at [Vincent](https://vincent-timofeysie.c9.io/app/)
