@@ -7,11 +7,17 @@ We scrape Wikidata for a list of works by a particular artist to assemble the da
 
 ## Quickstart
 
-start the web server:
+To start the web server:
 ```
 $ http-server -a localhost -p 8000
 ```
-Foe e2e tests, With the server running from the root directory, run:
+
+To run the unit tests with Karma, use the node task:
+```
+$ node test
+```
+
+For e2e tests, With the server running from the root directory, run:
 ```
 $ cd app
 $ webdriver-manager start
@@ -34,28 +40,20 @@ See the Getting Started section below for detailed installation instructions abo
 * rounds with increasing difficulty
 * difficulty level on paintings (keep track of correct/incorrect scores by painting and then calculate a difficulty rating based on this)
 * history of game paintings (is: scroll back to the previous 20 pictures, or show a thumbnail field)
-* if the view is collapsed, then choosing an artist should collapes the left view
+* if the view is collapsed, then choosing an artist should collapse the left view
 
 ## Tests
 
-We have e2e and unit tests written in Jasmine and run with Protractor using the Webdriver to start the Selenium server.  This will start up a server:
-```
-$ webdriver-manager start
-```
-To run the tests, use the following command:
-```
-$ protractor protractor.conf.js
-```
+This project has Jasmine unit tests run by Karma and e2e tests run with Protractor using the Webdriver.  See the Quickstart section to for use.
 
 ### Run End-to-End Tests
 
-To run your e2e tests your should install and configure Protractor and the Selenium WebServer.
-These are already specified as npm dependencies within `package.json`. Simply run these
+To run your e2e tests you should install and configure Protractor and the Selenium WebServer.  These are already specified as npm dependencies within `package.json`. Simply run these
 terminal commands:
 
-```console
-npm update
-webdriver-manager update
+```
+$ npm update
+$ webdriver-manager update
 ```
 
 Your can read more details about Protractor and e2e here: http://angular.github.io/protractor/#/
@@ -69,27 +67,24 @@ cd ./app; live-server;
 
 sudo chown -R $USER /usr/local/lib/node_modules/webdriver-manager/selenium
 
-> Note: since `live-server` is working on port 8080, we configure the `protractor.conf.js` to use
+Note: since `live-server` is working on port 8080, we configure the `protractor.conf.js` to use
 `baseUrl: 'http://localhost:8080'`
 
- 2. In another tab, start a Webdriver instance:
+2. In another tab, start a Webdriver instance:
  
 ```console
 webdriver-manager start
 ```
 
->This will start up a Selenium Server and will output a bunch of info logs. Your Protractor test
-will send requests to this server to control a local browser. You can see information about the
-status of the server at `http://localhost:4444/wd/hub`. If you see errors, verify path in
-`e2e-tests/protractor.conf.js` for `chromeDriver` and `seleniumServerJar` to your local file system.
+This will start up a Selenium Server and will output a bunch of info logs. Your Protractor tes will send requests to this server to control a local browser. You can see information about the status of the server at `http://localhost:4444/wd/hub`. If you see errors, verify path in `e2e-tests/protractor.conf.js` for `chromeDriver` and `seleniumServerJar` to your local file system.
 
- 3. Run your e2e tests using the `test` script defined in `package.json`:
+3. Run your e2e tests using the `test` script defined in `package.json`:
  
 ```console
 npm test
 ```
 
-> This uses the local **Protractor** installed at `./node_modules/protractor`
+This uses the local **Protractor** installed at `./node_modules/protractor`
 
 
 ## The Seed

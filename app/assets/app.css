@@ -47,6 +47,10 @@ md-sidenav.md-closed.md-locked-open-add-active {
     max-width: 200px !important;
 } 
 
+md-list-item {
+  overflow: scroll;
+}
+
 /* Primary content area */
 .loading {
   text-align: right;

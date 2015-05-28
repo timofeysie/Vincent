@@ -39,7 +39,7 @@
 
         <!-- game list of possible artists -->
         <div ng-show="ul.game">
-          <md-item ng-repeat="it in ul.paintings">
+          <md-list-item ng-repeat="it in ul.paintings">
           <md-button 
               ng-click="ul.selectAnswer(it)" 
               ng-class="{'selected' : it === ul.selected }">

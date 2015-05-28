@@ -13,13 +13,15 @@ module.exports = function(config) {
         'app/bower_components/angular-animate/angular-animate.js',
         'app/bower_components/angular-aria/angular-aria.js',
         'app/bower_components/angular-material/angular-material.js',
+        'app/bower_components/angular-mocks/angular-mocks.js',
+        'app/bower_components/angular-preload-image/angular-preload-mocks.js',
+        'app/bower_components/angular-route/angular-route.js',
+        'app/bower_components/eventEmitter/EventEmitter.js',
         'app/app.js',
-        'app//src/paintings/Paintings.js',
-        'app/src/paintings/PaintingController.js',
+        'app/src/paintings/Paintings.js',
+        'app/src/paintings/PaintingsController.js',
         'app/src/paintings/PaintingService.js',
-        'unit-tests/paintings.spec.js',
-        'e2e-tests/protractor.conf.js',
-        'e2e-tests/scenarios.js'
+        'unit-tests/paintings.spec.js'
     ],
     // list of files to exclude
     exclude: [
