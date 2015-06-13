@@ -42,6 +42,11 @@ See the Getting Started section below for detailed installation instructions abo
 * history of game paintings (is: scroll back to the previous 20 pictures, or show a thumbnail field)
 * if the view is collapsed, then choosing an artist should collapse the left view
 
+## The TODO List
+Generate a todo.md from javascript files with the [Gulp Todo](https://npmjs.org/package/gulp-todo).  Comments should be in this format, 'TODO:' not '@TODO'.
+Generate the list as follows:
+$ gulp todo
+
 ## Tests
 
 This project has Jasmine unit tests run by Karma and e2e tests run with Protractor using the Webdriver.  See the Quickstart section to for use.

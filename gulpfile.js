@@ -56,7 +56,7 @@ gulp.task('watch', function() {
 // generate a todo.md from javascript files 
 // TODO: <-- in this format, not @TODO
 gulp.task('todo', function() {
-    gulp.src(src+'**/*.js')
+    gulp.src([src+'**/*.js', '!./app/bower_components/'])
         .pipe(todo())
         .pipe(gulp.dest('./'));
         //  will output TODO.md
